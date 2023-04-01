@@ -8,35 +8,19 @@ using System.Text;
 
 namespace Ex01_01
 {
-    class Program
+    class Prograrivate
     {
-
-        private static double findMax(double i_numberA, double i_numberB, double i_numberC)
-        {
-            double max = i_numberA;
-
-            if(i_numberB > max)
-            {
-                max = i_numberB;
-            }
-
-            if(i_numberC > max)
-            {
-                max = i_numberC;
-            }
-
-            return max;
-        }
-
-
-
         public static void Main()
         {
             string input;
-            double[] decimalNumbersDoubles = new double[3];
+            int[] decimalNumbersDoubles = new int[3];
             string[] binaryNumbersStrings = new string[3];
-            double[] decimalNumbersDoublesDescending = new double[3];
-            int averageNumOfZeros, averageNumOfOnes, numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers;
+            int[] decimalNumbersDoublesDescending = new int[3];
+            int averageNumOfZeros,
+                averageNumOfOnes,
+                numOfMultiplicationsOfFour,
+                numOfDescendingNumbers,
+                numOfPalindromeNumbers;
 
 
             readInput(ref decimalNumbersDoubles, ref binaryNumbersStrings);
@@ -47,22 +31,29 @@ namespace Ex01_01
             numOfDescendingNumbers = calculateCountOfDescendingNumbers(decimalNumbersDoubles);
             numOfPalindromeNumbers = calculateCountOfPalindromeNumbers(decimalNumbersDoubles);
 
-            Console.WriteLine(string.Format(
-@"The decimal numbers are: {0}, {1}, {2}
+            Console.WriteLine(
+                string.Format(
+                    @"The decimal numbers are: {0}, {1}, {2}
 The average of number of zeros: {3}
 The average of number of ones: {4}
 The number of numbers that are divided by four is: {5}
 The number of decimal numbers that their digits are descending: {6}
 The number of decimal palindrome numbers : {7} ",
-decimalNumbersDoublesDescending[0], decimalNumbersDoublesDescending[1], decimalNumbersDoublesDescending[2], averageNumOfZeros, averageNumOfOnes,
-numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
+                    decimalNumbersDoublesDescending[0],
+                    decimalNumbersDoublesDescending[1],
+                    decimalNumbersDoublesDescending[2],
+                    averageNumOfZeros,
+                    averageNumOfOnes,
+                    numOfMultiplicationsOfFour,
+                    numOfDescendingNumbers,
+                    numOfPalindromeNumbers));
 
 
             Console.ReadLine();
         }
 
-        private static int calculateCountOfPalindromeNumbers(double[] i_DecimalNumbersDoubles)
-        {       
+        private static int calculateCountOfPalindromeNumbers(int[] i_DecimalNumbersDoubles)
+        {
             int numberOfPalindroms = 0;
 
             for(int i = 0; i < i_DecimalNumbersDoubles.Length; i++)
@@ -76,11 +67,11 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
             return numberOfPalindroms;
         }
 
-        private static bool checkIfPalindrom(double number)
+        private static bool checkIfPalindrom(int number)
         {
-            double originNumber = number;
-            double reversNumber= 0;
-            double lastDigit;
+            int originNumber = number;
+            int reversNumber = 0;
+            int lastDigit;
 
             while(originNumber > 0)
             {
@@ -99,7 +90,7 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
             }
         }
 
-        private static int calculateCountOfDescendingNumbers(double[] i_DecimalNumbersDoubles)
+        private static int calculateCountOfDescendingNumbers(int[] i_DecimalNumbersDoubles)
         {
             int countOfDescendingNumbers = 0;
             for(int i = 0; i < 3; i++)
@@ -113,18 +104,19 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
             return countOfDescendingNumbers;
         }
 
-        private static bool isDescendingNumber(double i_DecimalNumbersDouble)
+        private static bool isDescendingNumber(int i_DecimalNumbersDouble)
         {
             bool v_isDescending = true;
             string numberString = i_DecimalNumbersDouble.ToString();
-            for (int i = 0; i < numberString.Length - 1; i++)
+            for(int i = 0; i < numberString.Length - 1; i++)
             {
-                if (numberString[i] < numberString[i + 1])
+                if(numberString[i] < numberString[i + 1])
                 {
                     v_isDescending = false;
                     break;
                 }
             }
+
             return v_isDescending;
         }
 
@@ -134,11 +126,11 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
             int LengthOfBinaryNumbersArray = i_BinaryNumbersStrings.Length;
             int numberOfOnes = 0;
 
-            for (int i = 0; i < LengthOfBinaryNumbersArray; i++)
+            for(int i = 0; i < LengthOfBinaryNumbersArray; i++)
             {
-                for (int j = 0; j < i_BinaryNumbersStrings[i].Length; j++)
+                for(int j = 0; j < i_BinaryNumbersStrings[i].Length; j++)
                 {
-                    if (i_BinaryNumbersStrings[i][j] == '1')
+                    if(i_BinaryNumbersStrings[i][j] == '1')
                     {
                         numberOfOnes++;
                     }
@@ -160,14 +152,16 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
                     if(i_BinaryNumbersStrings[i][j] == '0')
                     {
                         numberOfZeros++;
-                    }   
+                    }
                 }
             }
 
             return (numberOfZeros / LengthOfBinaryNumbersArray);
         }
 
-        private static void sortInDescendingOrder(double[] i_DecimalNumbersDoubles, ref double[] o_DecimalNumbersDoublesDescending)
+        private static void sortInDescendingOrder(
+            int[] i_DecimalNumbersDoubles,
+            ref int[] o_DecimalNumbersDoublesDescending)
         {
             o_DecimalNumbersDoublesDescending[0] = i_DecimalNumbersDoubles[0];
             o_DecimalNumbersDoublesDescending[1] = i_DecimalNumbersDoubles[1];
@@ -176,13 +170,13 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
             Array.Reverse(o_DecimalNumbersDoublesDescending);
         }
 
-        private static int calculateCountOfMultiplicationsOfFour(double[] i_DecimalNumbersDoubles)
+        private static int calculateCountOfMultiplicationsOfFour(int[] i_DecimalNumbersDoubles)
         {
             int counterOfNumbersDivideByFour = 0;
 
             for(int i = 0; i < i_DecimalNumbersDoubles.Length; i++)
             {
-                if(i_DecimalNumbersDoubles[i] % 4 ==0)
+                if(i_DecimalNumbersDoubles[i] % 4 == 0)
                 {
                     counterOfNumbersDivideByFour++;
                 }
@@ -191,17 +185,17 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
             return counterOfNumbersDivideByFour;
         }
 
-        private static void readInput(ref double[] i_DecimalNumbersDoubles, ref string[] i_BinaryNumbersStrings)
+        private static void readInput(ref int[] i_DecimalNumbersDoubles, ref string[] i_BinaryNumbersStrings)
         {
             int numOfValidInputs = 0;
             string stringInput;
 
             Console.WriteLine("Please Enter 3 binary numbers, each one 8 bits in length:");
 
-            while (numOfValidInputs < 3)
+            while(numOfValidInputs < 3)
             {
                 stringInput = Console.ReadLine();
-                if (inputStringValidityCheck(stringInput) == true)
+                if(inputStringValidityCheck(stringInput) == true)
                 {
                     i_BinaryNumbersStrings[numOfValidInputs] = stringInput;
                     i_DecimalNumbersDoubles[numOfValidInputs] = parseToDecimal(stringInput);
@@ -219,39 +213,40 @@ numOfMultiplicationsOfFour, numOfDescendingNumbers, numOfPalindromeNumbers));
         {
             int validLength = 8;
 
-            if (i_stringInput.Length != validLength)
+            if(i_stringInput.Length != validLength)
             {
                 return false;
             }
 
 
-            for (int i = 0; i < i_stringInput.Length; i++)
+            for(int i = 0; i < i_stringInput.Length; i++)
             {
-                if (i_stringInput[i] != '0' && i_stringInput[i] != '1')
+                if(i_stringInput[i] != '0' && i_stringInput[i] != '1')
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
-        private static double parseToDecimal(string i_StringInput)
+        private static int parseToDecimal(string i_StringInput)
         {
-            double decimalNumber = 0;
+            int decimalNumber = 0;
+            //double decimalNumber = 0;
+            int power = i_StringInput.Length - 1;
 
-            for (int i = 0; i < i_StringInput.Length; i++)
+            for(int i = 0; i < i_StringInput.Length; i++)
             {
-                if (i_StringInput[i] == '1')
+                if(i_StringInput[i] == '1')
                 {
-                    decimalNumber += Math.Pow(2, i);
+                    decimalNumber += (int)Math.Pow(2, power);
                 }
+
+                power--;
             }
 
             return decimalNumber;
         }
     }
-
-
-
-
 }
